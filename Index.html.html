@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utkarsh Jaiswal — Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1D35;
+    --navy-mid: #162B4A;
+    --accent: #2563EB;
+    --accent-light: #DBEAFE;
+    --accent-glow: rgba(37,99,235,0.12);
+    --gold: #D97706;
+    --gold-light: #FEF3C7;
+    --text: #0F172A;
+    --text-mid: #475569;
+    --text-light: #94A3B8;
+    --surface: #F8FAFC;
+    --surface2: #F1F5F9;
+    --border: #E2E8F0;
+    --white: #FFFFFF;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--navy); letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 500;
+    color: var(--text-mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    padding: 100px 8% 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px; pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(37,99,235,0.15);
+    border: 1px solid rgba(37,99,235,0.3);
+    color: #93C5FD;
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: ''; width: 7px; height: 7px;
+    background: #3B82F6; border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800; color: #FFFFFF;
+    line-height: 1.05; letter-spacing: -0.03em;
+    margin-bottom: 0.3rem;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+  .hero-name .accent { color: #60A5FA; }
+  .hero-role {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 500; color: #93C5FD;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+  .hero-desc {
+    font-size: 1.05rem; color: #94A3B8;
+    max-width: 560px; line-height: 1.75;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s ease 0.4s both;
+  }
+  .btn-primary {
+    background: var(--accent); color: white;
+    padding: 12px 28px; border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: #93C5FD;
+    padding: 12px 28px; border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid rgba(147,197,253,0.3);
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-ghost:hover { border-color: rgba(147,197,253,0.7); background: rgba(147,197,253,0.07); }
+
+  .hero-stats {
+    position: absolute; bottom: 50px; right: 8%;
+    display: flex; gap: 2rem;
+    animation: fadeUp 0.7s ease 0.5s both;
+  }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800; color: white; line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: #64748B; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 8%; }
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 12px; border-radius: 100px;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700; color: var(--navy);
+    letter-spacing: -0.025em; line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .section-sub {
+    font-size: 1.05rem; color: var(--text-mid);
+    max-width: 560px; line-height: 1.7;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: white; }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .about-text p {
+    font-size: 1.05rem; color: var(--text-mid);
+    line-height: 1.8; margin-bottom: 1.2rem;
+  }
+  .about-highlights {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .highlight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+  .highlight-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .highlight-title { font-weight: 600; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.2rem; }
+  .highlight-desc { font-size: 0.82rem; color: var(--text-mid); }
+
+  /* About visual side */
+  .about-visual {
+    position: relative;
+  }
+  .profile-card {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 2.5rem;
+    color: white;
+    position: relative; overflow: hidden;
+  }
+  .profile-card::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
+  }
+  .profile-initials {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem; font-weight: 800; color: white;
+    margin-bottom: 1.5rem;
+  }
+  .profile-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem;
+  }
+  .profile-title { font-size: 0.9rem; color: #93C5FD; margin-bottom: 1.5rem; }
+  .profile-detail {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.875rem; color: #94A3B8; margin-bottom: 0.7rem;
+  }
+  .profile-detail-icon { color: #60A5FA; width: 16px; text-align: center; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--surface); }
+  .exp-timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 2rem 2rem 2rem;
+    position: relative;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .exp-card:hover { border-color: #BFDBFE; box-shadow: 0 8px 32px rgba(37,99,235,0.08); }
+  .exp-card.featured {
+    border-color: #BFDBFE;
+    border-left: 4px solid var(--accent);
+  }
+  .exp-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem;
+  }
+  .exp-title-group {}
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+  .exp-company {
+    font-size: 0.95rem; font-weight: 500; color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+  .exp-location { font-size: 0.82rem; color: var(--text-light); }
+  .exp-meta { text-align: right; flex-shrink: 0; }
+  .exp-date {
+    font-size: 0.82rem; font-weight: 500; color: white;
+    background: var(--navy); padding: 4px 12px;
+    border-radius: 100px; white-space: nowrap;
+    display: inline-block;
+  }
+  .exp-tag {
+    display: inline-block; margin-top: 6px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px;
+  }
+  .tag-featured { background: var(--accent-light); color: var(--accent); }
+  .tag-standard { background: var(--surface2); color: var(--text-mid); }
+
+  .exp-divider {
+    border: none; border-top: 1px solid var(--border);
+    margin: 1.2rem 0;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-bullets li {
+    font-size: 0.93rem; color: var(--text-mid);
+    line-height: 1.65; padding-left: 1.2rem; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--accent); font-size: 0.75rem; top: 3px;
+  }
+  .exp-bullets li strong { color: var(--navy); font-weight: 600; }
+  .exp-metrics {
+    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem;
+  }
+  .metric-badge {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    text-align: center;
+  }
+  .metric-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 800; color: var(--accent);
+    display: block;
+  }
+  .metric-lbl { font-size: 0.72rem; color: var(--text-light); display: block; }
+
+  /* ── SKILLS ── */
+  #skills { background: white; }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-category {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .skill-cat-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+  }
+  .skill-icon {
+    width: 36px; height: 36px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .skill-cat-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.95rem; color: var(--navy);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    font-size: 0.78rem; padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text-mid); background: white;
+    font-weight: 500;
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { background: var(--surface); }
+  .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .ach-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.75rem;
+    transition: box-shadow 0.2s;
+  }
+  .ach-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
+  .ach-rank {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+  .rank-gold { color: var(--gold); }
+  .rank-silver { color: #64748B; }
+  .ach-title { font-weight: 600; font-size: 1rem; color: var(--navy); margin-bottom: 0.3rem; }
+  .ach-org { font-size: 0.85rem; color: var(--text-mid); }
+
+  /* ── EDUCATION ── */
+  #education { background: white; }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.75rem;
+  }
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1.05rem; color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .edu-school { font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 0.3rem; }
+  .edu-year { font-size: 0.82rem; color: var(--text-light); margin-bottom: 0.75rem; }
+  .edu-score {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--gold);
+    font-weight: 700; font-size: 0.85rem;
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy);
+    text-align: center; padding: 90px 8%;
+  }
+  #contact .section-title { color: white; }
+  #contact .section-sub { color: #94A3B8; margin: 0 auto 3rem; }
+  .contact-links {
+    display: flex; justify-content: center;
+    gap: 1.25rem; flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #93C5FD; text-decoration: none;
+    padding: 12px 22px; border-radius: var(--radius-sm);
+    font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.12); border-color: rgba(147,197,253,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060F1C;
+    padding: 1.5rem 8%;
+    text-align: center;
+    font-size: 0.82rem; color: #334155;
+  }
+
+  /* ── SCROLL ANIMATION ── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    section { padding: 60px 5%; }
+    .about-grid { grid-template-columns: 1fr; }
+    .hero-stats { position: static; margin-top: 3rem; justify-content: flex-start; }
+    nav { padding: 0 5%; }
+    .nav-links { display: none; }
+    .exp-header { flex-direction: column; }
+    .exp-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">UJ<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:utkarshjswl28@gmail.com" class="btn-primary" style="font-size:0.82rem;padding:8px 18px;">Hire Me →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Open to Opportunities · Marketing & Strategy</div>
+    <h1 class="hero-name">Utkarsh<br><span class="accent">Jaiswal</span></h1>
+    <p class="hero-role">Marketing Strategist & Analytics-Driven Growth Professional</p>
+    <p class="hero-desc">MBA Integrated candidate who helped close a ₹50 Lakh consulting deal at KPMG India. I turn data into campaigns and campaigns into measurable results.</p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">View My Work →</a>
+      <a href="mailto:utkarshjswl28@gmail.com" class="btn-ghost">✉ Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">₹50L</div>
+      <div class="stat-label">Contract Closed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12</div>
+      <div class="stat-label">SQLs Generated</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30%</div>
+      <div class="stat-label">Reach Growth</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2×</div>
+      <div class="stat-label">Award Winner</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:3rem;">
+    <div>
+      <span class="section-label">About Me</span>
+      <h2 class="section-title" style="margin-bottom:0">The person behind the numbers</h2>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm an MBA Integrated student at DBS Global University, Dehradun, specialising in <strong>Marketing and Supply Chain Management</strong>. My academic training is complemented by real consulting and digital marketing experience — I don't just study strategy, I execute it.</p>
+      <p>At KPMG India, I worked as an advisory intern in the IT & Software practice, contributing to business development, proposal writing, and client engagement at the enterprise level — including being part of a team that closed a <strong>₹50 Lakh contract</strong>.</p>
+      <p>I'm passionate about the intersection of data analytics and brand strategy — using tools like Google Analytics, Power BI, and SEO platforms to drive decisions that actually move the needle.</p>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">📊</div>
+          <div class="highlight-title">Data-Driven</div>
+          <div class="highlight-desc">Every campaign decision backed by analytics</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🎯</div>
+          <div class="highlight-title">Goal-Oriented</div>
+          <div class="highlight-desc">Focused on measurable business outcomes</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🤝</div>
+          <div class="highlight-title">Collaborative</div>
+          <div class="highlight-desc">Cross-functional team leadership experience</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">⚡</div>
+          <div class="highlight-title">Fast Learner</div>
+          <div class="highlight-desc">Adapts quickly to new tools and environments</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <div class="profile-card">
+        <div class="profile-initials">UJ</div>
+        <div class="profile-name">Utkarsh Jaiswal</div>
+        <div class="profile-title">Marketing & Strategy · MBA Integrated</div>
+        <div class="profile-detail"><span class="profile-detail-icon">📍</span> Dehradun, Uttarakhand</div>
+        <div class="profile-detail"><span class="profile-detail-icon">🎓</span> DBS Global University · 2022–2027</div>
+        <div class="profile-detail"><span class="profile-detail-icon">💼</span> Ex-KPMG India Advisory Intern</div>
+        <div class="profile-detail"><span class="profile-detail-icon">🏆</span> Brand Aid 2025 Winner</div>
+        <div class="profile-detail"><span class="profile-detail-icon">📧</span> utkarshjswl28@gmail.com</div>
+        <div class="profile-detail"><span class="profile-detail-icon">📞</span> +91-6388294633</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <span class="section-label">Experience</span>
+  <h2 class="section-title">Where I've done the work</h2>
+  <p class="section-sub">Three internships across consulting, real estate marketing, and cybersecurity — each adding a distinct layer to my skillset.</p>
+
+  <div class="exp-timeline">
+
+    <!-- KPMG -->
+    <div class="exp-card featured reveal">
+      <div class="exp-header">
+        <div class="exp-title-group">
+          <div class="exp-role">Advisory & Client Solutions Intern</div>
+          <div class="exp-company">KPMG India</div>
+          <div class="exp-location">Onsite · Gurgaon, Haryana · IT & Software Practice</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">Jun 2025 – Dec 2025</div>
+          <div><span class="exp-tag tag-featured">Featured Role</span></div>
+        </div>
+      </div>
+      <div class="exp-metrics">
+        <div class="metric-badge"><span class="metric-val">₹50L</span><span class="metric-lbl">Contract Contribution</span></div>
+        <div class="metric-badge"><span class="metric-val">12</span><span class="metric-lbl">SQLs Generated</span></div>
+        <div class="metric-badge"><span class="metric-val">6 mo</span><span class="metric-lbl">Engagement Length</span></div>
+      </div>
+      <hr class="exp-divider">
+      <ul class="exp-bullets">
+        <li>Contributed to closing a <strong>₹50 Lakh advisory contract</strong> by mapping complex client challenges to tailored KPMG solutions — managed the full consulting lifecycle from issue diagnosis to solution delivery.</li>
+        <li>Generated <strong>12 Sales Qualified Leads (SQLs)</strong> through systematic account research and industry analysis in the IT & Software sector, directly supporting the BD pipeline.</li>
+        <li>Collaborated with senior advisors on hypothesis-driven proposals and stakeholder engagement presentations to identify client pain points and position advisory services effectively.</li>
+        <li>Supported concurrent project management across multiple client engagements, ensuring timely and quality deliverables.</li>
+      </ul>
+    </div>
+
+    <!-- To-Let Globe -->
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div class="exp-title-group">
+          <div class="exp-role">Marketing Intern</div>
+          <div class="exp-company">To-Let Globe</div>
+          <div class="exp-location">Hybrid</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">Jun 2024 – Jul 2024</div>
+          <div><span class="exp-tag tag-standard">Digital Marketing</span></div>
+        </div>
+      </div>
+      <div class="exp-metrics">
+        <div class="metric-badge"><span class="metric-val">+30%</span><span class="metric-lbl">Brand Reach</span></div>
+        <div class="metric-badge"><span class="metric-val">+15%</span><span class="metric-lbl">CTR Improvement</span></div>
+        <div class="metric-badge"><span class="metric-val">3+</span><span class="metric-lbl">Trends Identified</span></div>
+      </div>
+      <hr class="exp-divider">
+      <ul class="exp-bullets">
+        <li>Grew brand reach by <strong>30%</strong> via targeted social media campaigns on Instagram and LinkedIn, with A/B testing across two audience segments.</li>
+        <li>Improved CTR by <strong>15%</strong> through competitor analysis and iterative optimization of digital ad creatives on Meta Ads Manager.</li>
+        <li>Identified 3+ emerging market trends through research, translating insights into campaign briefs and a monthly content calendar.</li>
+      </ul>
+    </div>
+
+    <!-- Redient Security -->
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div class="exp-title-group">
+          <div class="exp-role">Digital Marketing Intern</div>
+          <div class="exp-company">Redient Security</div>
+          <div class="exp-location">Hybrid</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">May 2024 – Jun 2024</div>
+          <div><span class="exp-tag tag-standard">SEO · PPC · Content</span></div>
+        </div>
+      </div>
+      <hr class="exp-divider">
+      <ul class="exp-bullets">
+        <li>Managed multi-channel campaigns across PPC, email marketing, and social platforms; tracked via <strong>Google Analytics</strong> and SEO tools to optimize ROI.</li>
+        <li>Developed content strategy and audience engagement frameworks that informed the team's quarterly digital roadmap.</li>
+        <li>Produced weekly performance reports analyzing CPC, CTR, and conversion rate to surface continuous improvement opportunities.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <span class="section-label">Skills</span>
+  <h2 class="section-title">Tools & capabilities</h2>
+  <p class="section-sub">A blend of marketing strategy, analytics platforms, and operational know-how.</p>
+  <div class="skills-grid">
+    <div class="skill-category reveal">
+      <div class="skill-cat-header">
+        <div class="skill-icon" style="background:#DBEAFE;">📢</div>
+        <div class="skill-cat-name">Marketing & Strategy</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">SEO</span><span class="skill-tag">PPC</span>
+        <span class="skill-tag">Content Marketing</span><span class="skill-tag">Email Marketing</span>
+        <span class="skill-tag">Social Media Strategy</span><span class="skill-tag">Campaign Pitching</span>
+        <span class="skill-tag">Brand Management</span><span class="skill-tag">Market Research</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-header">
+        <div class="skill-icon" style="background:#D1FAE5;">📊</div>
+        <div class="skill-cat-name">Data & Analytics</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Google Analytics</span><span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Advanced Excel</span><span class="skill-tag">Python</span>
+        <span class="skill-tag">Meta Ads Manager</span><span class="skill-tag">LinkedIn Campaign Mgr</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-header">
+        <div class="skill-icon" style="background:#FEF3C7;">🔗</div>
+        <div class="skill-cat-name">Supply Chain & Ops</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">SCM Analytics</span><span class="skill-tag">Industry Analysis</span>
+        <span class="skill-tag">Opportunity Prioritization</span><span class="skill-tag">Operations Leadership</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-header">
+        <div class="skill-icon" style="background:#EDE9FE;">🤝</div>
+        <div class="skill-cat-name">Leadership & Soft Skills</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Project Management</span><span class="skill-tag">Stakeholder Engagement</span>
+        <span class="skill-tag">Cross-functional Teams</span><span class="skill-tag">Public Speaking</span>
+        <span class="skill-tag">English</span><span class="skill-tag">Hindi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <span class="section-label">Achievements</span>
+  <h2 class="section-title">Wins & recognition</h2>
+  <p class="section-sub">Competing, leading, and winning beyond the classroom.</p>
+  <div class="ach-grid">
+    <div class="ach-card reveal">
+      <div class="ach-rank rank-gold">1st</div>
+      <div class="ach-title">Brand Aid 2025</div>
+      <div class="ach-org">DBS Global University Annual Fest · Marketing & Branding Competition</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-rank rank-silver">2nd</div>
+      <div class="ach-title">Business Pitch Competition</div>
+      <div class="ach-org">Graphic Era Hill University, Dehradun · Developed & pitched a full business concept</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-rank" style="color:var(--accent);font-size:1.5rem;margin-bottom:0.75rem;">OPS HEAD</div>
+      <div class="ach-title">Operations Head – Innoventures Club</div>
+      <div class="ach-org">Led MANFEST 2024 & 2025 · End-to-end logistics, partnerships & budgets for annual college fest</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-rank" style="color:#059669;font-size:1.5rem;margin-bottom:0.75rem;">VOL</div>
+      <div class="ach-title">Volunteer – Sports Experiential Learning</div>
+      <div class="ach-org">Dept. of Sports, Govt. of Uttarakhand · In collaboration with IIMS</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <span class="section-label">Education</span>
+  <h2 class="section-title">Academic background</h2>
+  <p class="section-sub">Strong academic record combined with practical business education.</p>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">Integrated MBA</div>
+      <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:0.3rem;">Marketing & Supply Chain Specialization</div>
+      <div class="edu-school">DBS Global University, Dehradun</div>
+      <div class="edu-year">2022 – 2027 · Pursuing</div>
+      <span class="edu-score">In Progress</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">Class XII</div>
+      <div class="edu-school">Jagran Public School, Varanasi</div>
+      <div class="edu-year">2020</div>
+      <span class="edu-score">92.3%</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">Class X</div>
+      <div class="edu-school">Jagran Public School, Varanasi</div>
+      <div class="edu-year">2018</div>
+      <span class="edu-score">82%</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-label" style="background:rgba(37,99,235,0.2);color:#93C5FD;">Let's Connect</span>
+  <h2 class="section-title">Open to opportunities</h2>
+  <p class="section-sub">Looking for marketing, strategy, or business development roles. Let's talk.</p>
+  <div class="contact-links">
+    <a href="mailto:utkarshjswl28@gmail.com" class="contact-link">✉ utkarshjswl28@gmail.com</a>
+    <a href="tel:+916388294633" class="contact-link">📞 +91-6388294633</a>
+    <a href="https://www.linkedin.com/in/utkarsh-jaiswal-795b33247" target="_blank" class="contact-link">🔗 LinkedIn Profile</a>
+    <a href="#" class="contact-link">📄 Download Resume</a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Utkarsh Jaiswal · Built as a personal portfolio · Dehradun, India
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
